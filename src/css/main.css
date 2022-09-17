@@ -1,10 +1,50 @@
-
-/* Header */
-
-#logo {
-    max-width: 150px;
+:root {
+    --lightskyblue: #93D2F7;
+    --lightbluelogo: #37B5FF;
+    --darkbluelogo: #0F3D8B;
   }
 
-.header-btn {
-    
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica;
+}
+/* Header */
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 20px 50px;
+    width: 100%;
+    padding: 0;
+}
+nav {
+    width: 100%;
+    background-color: var(--lightskyblue);
+}
+#logo {
+    margin-right: auto;
+    max-width: 150px;
+}
+
+header li {
+    list-style: none;
+    display: inline-block;
+    padding: 0 20px;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--darkbluelogo);
+    transition: all 0.3s ease 0s;
+}
+
+header a:hover {
+    color: var(--lightbluelogo);
+}
+
+.link {
+    padding: 100px 30px 0px 0px;
+    float: right;
+    font-size: 25px;
 }
