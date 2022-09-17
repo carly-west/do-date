@@ -1,0 +1,26 @@
+Name: Carly Correa
+Project Title: DoDate
+
+Team Members: Myself!
+
+Overall Status: On-schedule
+
+Number of hours worked since last update: 7
+Number of hours worked on the project thus far: 7
+Total number of hours anticipated for completion: 120
+
+Accomplishments:
+1. I was able to get my project started and up on GitHub.
+2. I created a Firebase database and set up authentication.
+3. I got logging in/logging out and registering functionalities completed.
+
+Challenges:
+Firebase authentication was much more difficult than I expected. The majority of the time working on this project so far has been working on getting that set up.
+
+Plans / Goals for next week: Style the header and login/register pages. Also change text in header when the user is logged in.
+
+
+Accountability plan: (What is your plan to keep yourself honest and follow through with the goals that you have outlined?)
+I will keep track of the hours that I spend working on the project, and partion out my time better to avoid spending hours and hours on the project in the same day. 
+
+Other comments:

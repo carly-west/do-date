@@ -1,4 +1,4 @@
 import { loadHeader } from "./utils.js";
 
-// Leads header
+// Loads header
 loadHeader();
