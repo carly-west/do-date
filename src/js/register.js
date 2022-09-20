@@ -6,7 +6,7 @@ loadHeader();
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-import { doc, setDoc, getFirestore } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+import { doc, getDoc, setDoc, getFirestore } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -29,10 +29,11 @@ const db = getFirestore(app);
 const user = auth.currentUser;
 
 submitData.addEventListener("click", (e) => {
-    
+
+    var firstName = document.getElementById("firstName").value;
     var email = document.getElementById("email").value;
     var password = document.getElementById("psw").value;
-    
+
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         // Signed in 
@@ -48,8 +49,11 @@ submitData.addEventListener("click", (e) => {
 
         // Add user to database
         setDoc(doc(db, "users", user.email), {
-            email: user.email
+            email: user.email,
+            // Capitalizes first letter of name
+            name: firstName.charAt(0).toUpperCase() + firstName.slice(1)
           });
+
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -66,6 +70,16 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("logout-btn").style.display = "block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("register-btn").style.display = "none";
+
+    const db = getFirestore(app);
+    const logName = async () => {
+      const nameRef = doc(db, "users", user.email);
+      const nameDoc = await getDoc(nameRef);
+      document.getElementById("displayName").style.display = "block";
+      document.getElementById("displayName").innerHTML = nameDoc.data().name;
+    }
+    logName();
+
 
   } else {
     // User is signed out

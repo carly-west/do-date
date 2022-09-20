@@ -7,6 +7,7 @@ loadHeader();
 // Import the functions you need from the SDKs you need
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { doc, getDoc, getFirestore } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 
 // Your web app's Firebase configuration
@@ -32,11 +33,21 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("logout-btn").style.display = "block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("register-btn").style.display = "none";
-    console.log(user);
+    
+    const db = getFirestore(app);
+    const logName = async () => {
+      const nameRef = doc(db, "users", user.email);
+      const nameDoc = await getDoc(nameRef);
+      document.getElementById("displayName").style.display = "block";
+      document.getElementById("displayName").innerHTML = nameDoc.data().name;
+    }
+    logName();
 
   } else {
     // User is signed out
     console.log("not logged in- on auth state change")
     document.getElementById("logout-btn").style.display = "none";
+    document.getElementById("displayName").style.display = "none";
+
   }
 });
