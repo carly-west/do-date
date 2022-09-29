@@ -6,7 +6,7 @@ loadHeader();
 // Import the functions you need from the SDKs you need
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-import { doc, setDoc, getDoc, getFirestore, getDocs, updateDoc, collection } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+import { doc, setDoc, getDoc, getFirestore, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 
 
@@ -31,6 +31,9 @@ const db = getFirestore(app);
 
 
 
+
+
+
 onAuthStateChanged(auth, (user) => {
     if (user) {
 
@@ -41,42 +44,24 @@ onAuthStateChanged(auth, (user) => {
   
     //   Set class dropdown
     const setClasses = async () => {
-        // const classRef = doc(db, "classes", user.email);
-        // const classDoc = await getDoc(classRef);
-        // const classObject = classDoc.data();
-        // console.log(classObject)
-
-
-        const classDoc = await getDocs(collection(db, "classes", user.email, "classes"))
-
-
-        var classCounter = 0
-
-        classDoc.forEach((doc) => {
-          // Count the number of classes in the db/classes/user.email/classes collection
-          classCounter += 1;
-        });
-
-        classCounter += 1
-
+        const classRef = doc(db, "classes", user.email);
+        const classDoc = await getDoc(classRef);
+        const classObject = classDoc.data();
+        // document.getElementById("class1").innerHTML = classDoc.data().class1;
+        // document.getElementById("class2").innerHTML = classDoc.data().class2;
+        // document.getElementById("class3").innerHTML = classDoc.data().class3;
 
 
         document.getElementById("submitNewClass").addEventListener("click", (e) => {
             // Sets the new class name to be added
-            var newClassName = "class" + classCounter
+            var newClassName = "class" + (Object.keys(classObject).length + 1)
             var className = document.getElementById("className").value;
 
             // Add class to database
-            setDoc(doc(db, "classes", user.email, "classes", newClassName), {
+            setDoc(doc(db, "classes", user.email), {
                 // Capitalizes first letter of name
-                "Name": className.charAt(0).toUpperCase() + className.slice(1)
+                [newClassName]: {"Name": className.charAt(0).toUpperCase() + className.slice(1)}
                 }, { merge: true });
-
-            // // Add class to database
-            // setDoc(doc(db, "classes", user.email), {
-            //   // Capitalizes first letter of name
-            //   [newClassName]: className.charAt(0).toUpperCase() + className.slice(1)
-            //   }, { merge: true });
                 
         });
     }
@@ -93,24 +78,27 @@ onAuthStateChanged(auth, (user) => {
         const nameDoc = await getDoc(nameRef);
         document.getElementById("displayName").style.display = "block";
         document.getElementById("displayName").innerHTML = nameDoc.data().name;
+        console.log(nameDoc.data())
 
         // Loop through all of the classes linked with the user
-        const classDoc = await getDocs(collection(db, "classes", user.email, "classes"))
+        const classRef = doc(db, "classes", user.email);
+        const classDoc = await getDoc(classRef);
+        const classObject = classDoc.data();
+
+        console.log("hi", classObject)
+
+
+        // Display classes in dropdown
         const select = document.getElementById('classesDropDown')
-
-        classDoc.forEach((doc) => {
-          // Display classes in the db/classes/user.email/classes collection
+        for (const [key, value] of Object.entries(classObject)) {
           const opt = document.createElement('option');
-          opt.value = doc.id;
-          opt.innerHTML = doc.data().Name;
+          opt.value = key;
+          opt.innerHTML = value.Name;
           select.appendChild(opt);
-        });
+          console.log(key, value.Name)
+        } 
 
-        const classToBeUpdated2 = collection(db, "classes", user.email, "classes");
-        console.log("hey", classToBeUpdated2)
-
-        const classToBeUpdated3 = doc(db, "classes", user.email);
-        console.log("hey", classToBeUpdated3)
+        console.log(Object.keys(classObject).length)
 
         // Gets the input from the text field
         document.getElementById("editClass").addEventListener("click", (event) => {
@@ -121,28 +109,22 @@ onAuthStateChanged(auth, (user) => {
           var classNameEdit = document.getElementById("classNameEdit").value;
           console.log("ugh", classNameEdit)
 
-          classDoc.forEach((doc) => {
-            if (doc.data().Name == classToBeEditedSelection) {
-              console.log("hiiii")
-              classNameUpdated = doc.id
+          // Finds the field associated with the value
+          for (const [key, value] of Object.entries(classObject)) {
+            if (value.Name == classToBeEditedSelection) {
+              classNameUpdated = key
             }
-          });
 
-        //   // Finds the field associated with the value
-        //   for (const [key, value] of Object.entries(classObject)) {
-        //     if (value == classToBeEditedSelection) {
-        //       classNameUpdated = key
-        //     }
-        // }
+        }
+        console.log('edit', classNameEdit)
 
-        var classToBeUpdated = doc(db, "classes", user.email);
-        classNameUpdated = "classes." + classNameUpdated
-        console.log(classDoc.doc)
+        console.log("hi", classNameUpdated)        
+        const classToBeUpdated = doc(db, "classes", user.email);
         // Set the "capital" field of the city 'DC'
         console.log("hi", classNameUpdated)  
         updateDoc(classToBeUpdated, {
           // "class6" : classNameEdit
-          [classNameUpdated] : classNameEdit
+          [classNameUpdated] : {"Name": classNameEdit}
         });
 
         console.log(classNameEdit)
