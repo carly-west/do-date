@@ -48,8 +48,6 @@ submitData.addEventListener("click", (e) => {
 });
 
 
-const user = auth.currentUser;
-
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
@@ -64,15 +62,17 @@ onAuthStateChanged(auth, (user) => {
       const nameRef = doc(db, "users", user.email);
       const nameDoc = await getDoc(nameRef);
       document.getElementById("displayName").style.display = "block";
+      document.getElementById("assignmentTracker").style.display = "block";
       document.getElementById("displayName").innerHTML = nameDoc.data().name;
     }
     logName();
+
 
   } else {
     // User is signed out
     console.log("not logged in- on auth state change")
     document.getElementById("logout-btn").style.display = "none";
     document.getElementById("displayName").style.display = "none";
-
+    document.getElementById("assignmentTracker").style.display = "none";
   }
 });

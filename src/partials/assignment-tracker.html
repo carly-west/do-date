@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DoDate</title>
     <link rel="stylesheet" href="/src/css/main.css" />
-    <script  type="module" src="../js/add-data.js"></script>
 
 </head>
 <body>
@@ -15,11 +14,36 @@
         <div class="container">
             <h1>Create Class</h1>
 
+
+            <!-- <select name="classes" id="classesDropDown">
+                <option value="class1" id="class1"></option>
+                <option value="class2" id="class2"></option>
+                <option value="class3" id="class3"></option>
+            </select> -->
             <label for="className"><b>Class Name</b></label>
             <input type="text" placeholder="Enter Class Name" name="className" id="className" required>
     
-            <button type="button" id="createClass" name="createClass" class="createclass-btn">Create Class</button>
+            <button type="button" id="submitNewClass" name="createClass" class="createclass-btn">Create Class</button>
+        </div>
+    </form>
+
+
+    <form id="add-class">
+        <div class="container">
+            <h1>Edit Class</h1>
+
+            <label for="classes">Choose a class to Edit:</label>
+
+            <select name="classes" id="classesDropDown">
+            </select>
+
+            <label for="classNameEdit"><b>New Class Name</b></label>
+            <input type="text" placeholder="Enter Class Name" name="classNameEdit" id="classNameEdit" required>
+    
+            <button type="button" id="editClass" name="createClass" class="createclass-btn">Edit Class</button>
         </div>
     </form>
 </body>
+<script  type="module" src="../js/add-data.js"></script>
+
 </html>

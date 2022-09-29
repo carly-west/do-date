@@ -26,7 +26,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
-const user = auth.currentUser;
 
 submitData.addEventListener("click", (e) => {
 
@@ -44,8 +43,6 @@ submitData.addEventListener("click", (e) => {
         document.getElementById("logout-btn").style.display = "block";
         document.getElementById("login-btn").style.display = "none";
         document.getElementById("register-btn").style.display = "none";
-
-        const db = getFirestore(app);
 
         // Add user to database
         setDoc(doc(db, "users", user.email), {
@@ -71,11 +68,12 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("register-btn").style.display = "none";
 
-    const db = getFirestore(app);
     const logName = async () => {
       const nameRef = doc(db, "users", user.email);
       const nameDoc = await getDoc(nameRef);
+
       document.getElementById("displayName").style.display = "block";
+      document.getElementById("assignmentTracker").style.display = "block";
       document.getElementById("displayName").innerHTML = nameDoc.data().name;
     }
     logName();
@@ -85,5 +83,7 @@ onAuthStateChanged(auth, (user) => {
     // User is signed out
     console.log("not logged in- on auth state change")
     document.getElementById("logout-btn").style.display = "none";
+    document.getElementById("displayName").style.display = "none";
+    document.getElementById("assignmentTracker").style.display = "none";
   }
 });

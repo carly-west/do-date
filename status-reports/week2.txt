@@ -1,0 +1,31 @@
+Name: Carly Correa
+Project Title: DoDate
+
+Team Members: Myself!
+
+Overall Status: On-schedule
+
+Number of hours worked since last update: 6
+Number of hours worked on the project thus far: 13
+Total number of hours anticipated for completion: 126
+
+Accomplishments:
+1. Polished the logging in/logging out functionality so that only certain information is shown when user is logged in.
+2. Created a logo for the application.
+3. Styled the header with the logo, along with site colors.
+4. Added a "Create Class" page, and added the functionality to create a new class and add the class in firestore.
+5. Added the functionality to edit a previous class and update class name on firestore.
+
+
+Challenges:
+
+Firestore has been a bit difficult to work with, but I have been able to figure everything out that I have needed to so far! The NoSQL format of firestore is much different than what I am used to with regular SQL, so that has been a bit of a challege to learn. There also isn't a ton of documentation for Firestore with JavaScript, so it has been a lot of trial and error to get everything working.
+
+Plans / Goals for next week:
+I am planning on spending some time next week styling each of the pages I have so far, and choosing the font I want for the pages. I am also wanting to implement reset password functionality. I also want to start on the ability to add assigments to classes and upload the data to firestore.
+
+
+Accountability plan: I am going to continue keeping track of the hours I have worked, as well as pace myself throughout the week.
+
+
+Other comments:
