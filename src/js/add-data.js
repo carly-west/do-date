@@ -47,9 +47,8 @@ onAuthStateChanged(auth, (user) => {
         const classRef = doc(db, "classes", user.email);
         const classDoc = await getDoc(classRef);
         const classObject = classDoc.data();
-        // document.getElementById("class1").innerHTML = classDoc.data().class1;
-        // document.getElementById("class2").innerHTML = classDoc.data().class2;
-        // document.getElementById("class3").innerHTML = classDoc.data().class3;
+
+
 
 
         document.getElementById("submitNewClass").addEventListener("click", (e) => {
@@ -116,27 +115,16 @@ onAuthStateChanged(auth, (user) => {
             }
 
         }
-        console.log('edit', classNameEdit)
+      
 
-        console.log("hi", classNameUpdated)        
-        const classToBeUpdated = doc(db, "classes", user.email);
-        // Set the "capital" field of the city 'DC'
-        console.log("hi", classNameUpdated)  
-        updateDoc(classToBeUpdated, {
-          // "class6" : classNameEdit
-          [classNameUpdated] : {"Name": classNameEdit}
+        // Update document without changing any other fields
+        updateDoc(doc(db, "classes", user.email), {
+          "class3.Name" : classNameEdit
         });
-
-        console.log(classNameEdit)
-
         });
-
-
 
       }
       logName();
-  
-
 
     } else {
       // User is signed out
