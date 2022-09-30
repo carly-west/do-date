@@ -71,7 +71,6 @@ onAuthStateChanged(auth, (user) => {
                 "Color": classColorSet,
                 "Assignments": {}
               }
-
                 }, { merge: true });
                 
         });
