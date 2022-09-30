@@ -1,4 +1,4 @@
-import { loadHeader } from "../js/utils.js";
+import { loadHeader } from "./utils.js";
 
 // Loads header
 loadHeader();
@@ -50,16 +50,28 @@ onAuthStateChanged(auth, (user) => {
 
 
 
+        /*
+          ADDS CLASS WHEN CREATE CLASS BUTTON IS CLICKED
+        */
 
         document.getElementById("submitNewClass").addEventListener("click", (e) => {
             // Sets the new class name to be added
             var newClassName = "class" + (Object.keys(classObject).length + 1)
             var className = document.getElementById("className").value;
+            var classColor = document.getElementById("selectColor");
+
+            var classColorSet = classColor.options[classColor.selectedIndex].text ;
+
+
 
             // Add class to database
             setDoc(doc(db, "classes", user.email), {
                 // Capitalizes first letter of name
-                [newClassName]: {"Name": className.charAt(0).toUpperCase() + className.slice(1)}
+                [newClassName]: {"Name": className.charAt(0).toUpperCase() + className.slice(1),
+                "Color": classColorSet,
+                "Assignments": {}
+              }
+
                 }, { merge: true });
                 
         });
@@ -77,14 +89,11 @@ onAuthStateChanged(auth, (user) => {
         const nameDoc = await getDoc(nameRef);
         document.getElementById("displayName").style.display = "block";
         document.getElementById("displayName").innerHTML = nameDoc.data().name;
-        console.log(nameDoc.data())
 
         // Loop through all of the classes linked with the user
         const classRef = doc(db, "classes", user.email);
         const classDoc = await getDoc(classRef);
         const classObject = classDoc.data();
-
-        console.log("hi", classObject)
 
 
         // Display classes in dropdown
@@ -97,8 +106,9 @@ onAuthStateChanged(auth, (user) => {
           console.log(key, value.Name)
         } 
 
-        console.log(Object.keys(classObject).length)
-
+        /*
+          UPDATE CLASS WHEN EDIT CLASS BUTTON IS CLICKED
+        */
         // Gets the input from the text field
         document.getElementById("editClass").addEventListener("click", (event) => {
           classToBeEdited = document.getElementById("classesDropDown");
@@ -113,13 +123,11 @@ onAuthStateChanged(auth, (user) => {
             if (value.Name == classToBeEditedSelection) {
               classNameUpdated = key
             }
-
         }
       
-
         // Update document without changing any other fields
         updateDoc(doc(db, "classes", user.email), {
-          "class3.Name" : classNameEdit
+          [`${[classNameUpdated]}.Name`] : classNameEdit
         });
         });
 

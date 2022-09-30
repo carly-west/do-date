@@ -14,14 +14,17 @@
         <div class="container">
             <h1>Create Class</h1>
 
-
-            <!-- <select name="classes" id="classesDropDown">
-                <option value="class1" id="class1"></option>
-                <option value="class2" id="class2"></option>
-                <option value="class3" id="class3"></option>
-            </select> -->
             <label for="className"><b>Class Name</b></label>
             <input type="text" placeholder="Enter Class Name" name="className" id="className" required>
+
+            <select name="selectColor" id="selectColor">
+                <option value="red" id="red">Red</option>
+                <option value="orange" id="orange">Orange</option>
+                <option value="yellow" id="yellow">Yellow</option>
+                <option value="green" id="green">Green</option>
+                <option value="blue" id="blue">Blue</option>
+                <option value="purple" id="purple">Purple</option>
+            </select>
     
             <button type="button" id="submitNewClass" name="createClass" class="createclass-btn">Create Class</button>
         </div>
@@ -44,6 +47,6 @@
         </div>
     </form>
 </body>
-<script  type="module" src="../js/add-data.js"></script>
+<script  type="module" src="../js/add-edit-class.js"></script>
 
 </html>
