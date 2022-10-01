@@ -1,31 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DoDate</title>
     <link rel="stylesheet" href="/src/css/main.css" />
-
-</head>
-<body>
+  </head>
+  <body>
     <header class="divider" id="main-header"></header>
 
     <form id="add-assignment">
-        <div class="container">
-            <h1>Add Assignment</h1>
+      <div class="container">
+        <h1>Add Assignment</h1>
 
-            <label for="classes">Choose a class to add assignment to:</label>
+        <label for="classes">Choose a class to add assignment to:</label>
 
-            <select name="classes" id="classesDropDown">
-            </select>
+        <!-- Class Drop Down -->
+        <select name="classes" id="classesDropDown"></select>
 
-            <label for="addAssignment"><b>Enter Assignment Name</b></label>
-            <input type="text" placeholder="Assignment Name" name="addAssignment" id="addAssignment" required>
-    
-            <button type="button" id="addAssignmentButton" name="addAssignmentButton" class="addAssignment-btn">Add Assignment</button>
-        </div>
+        <!-- Add Assignment -->
+        <label for="addAssignment"><b>Enter Assignment Name</b></label>
+        <input type="text" placeholder="Assignment Name" name="addAssignment" id="addAssignment" required />
+
+        <label for="addAssignment"><b>Assignment Due Date</b></label>
+        <select name="dayDropDown" id="dayDropDown">
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+        </select>
+
+        <button type="button" id="addAssignmentButton" name="addAssignmentButton" class="addAssignment-btn">Add Assignment</button>
+      </div>
     </form>
-</body>
-<script  type="module" src="../js/assignment-tracker.js"></script>
 
+    <!-- Class legend -->
+    <div id="class-legend">
+      <h3>Class Legend</h3>
+      <ul id="classList"></ul>
+    </div>
+
+    <!-- Week layout -->
+    <div class="week-layout">
+      <div class="weekday" id="monday">
+        <ul id="mondayAssignmentList"></ul>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="../js/assignment-tracker.js"></script>
 </html>
