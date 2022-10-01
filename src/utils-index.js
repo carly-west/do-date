@@ -42,7 +42,7 @@ export async function loadTemplate(path) {
 
 export async function loadHeader() {
   // Loads header into main.js
-  const headerHTML = await loadTemplate("../partials/header.html");
+  const headerHTML = await loadTemplate("partials/header.html");
 
   const header = qs("#main-header");
 
@@ -56,7 +56,7 @@ export async function loadHeader() {
     e.preventDefault();
     auth.signOut();
     console.log("User signed out!");
-    document.getElementsByClassName("doNotDisplayOnLoggedOut").style.display = "none";
+    document.getElementById("logout-btn").style.display = "none";
     document.getElementById("login-btn").style.display = "block";
     document.getElementById("register-btn").style.display = "block";
   });
@@ -64,7 +64,7 @@ export async function loadHeader() {
 
 export async function loadRegister() {
   // Loads header into main.js
-  const registerHTML = await loadTemplate("../partials/login.html");
+  const registerHTML = await loadTemplate("partials/login.html");
 
   const register = qs("#register-partial");
 
@@ -73,7 +73,7 @@ export async function loadRegister() {
 
 export async function loadLogin() {
   // Loads header into main.js
-  const loginHTML = await loadTemplate("../partials/login.html");
+  const loginHTML = await loadTemplate("partials/login.html");
 
   const login = qs("#register-partial");
 

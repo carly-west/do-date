@@ -1,4 +1,4 @@
-import { loadHeader } from "./utils.js";
+import { loadHeader } from "../js/utils.js";
 
 // Loads header
 loadHeader();
@@ -30,7 +30,6 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("logout-btn").style.display = "block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("register-btn").style.display = "none";
-
     //   Set name in header
     const logName = async () => {
       const nameRef = doc(db, "users", user.email);
