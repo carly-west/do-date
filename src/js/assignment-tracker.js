@@ -52,7 +52,7 @@ onAuthStateChanged(auth, (user) => {
         select.appendChild(opt);
       }
 
-      // Display classes in list
+      // Display classes in legend
       const classLegend = document.getElementById("classList");
       for (const [key, value] of Object.entries(classObject)) {
         const listItem = document.createElement("li");
@@ -62,7 +62,20 @@ onAuthStateChanged(auth, (user) => {
         listItem.setAttribute("class", "class-color-" + value.Color);
       }
 
-      //   Set class dropdown
+      // Display classes in days of the week
+      for (const [key, value] of Object.entries(classObject)) {
+        for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
+          // assignmentValue is the assignment information
+          const dayOfWeekID = document.getElementById(assignmentValue.Date);
+          console.log(assignmentValue);
+          const dayListItem = document.createElement("li");
+          dayListItem.value = key;
+          dayListItem.innerHTML = assignmentValue.Name;
+          dayOfWeekID.appendChild(dayListItem);
+          dayListItem.setAttribute("class", "class-color-" + value.Color);
+        }
+      }
+
       const setClasses = async () => {
         const classRef = doc(db, "classes", user.email);
         const classDoc = await getDoc(classRef);
