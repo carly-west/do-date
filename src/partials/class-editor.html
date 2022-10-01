@@ -1,52 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DoDate</title>
-    <link rel="stylesheet" href="/src/css/main.css" />
-
-</head>
-<body>
+    <link rel="stylesheet" href="src/css/main.css" />
+  </head>
+  <body>
     <header class="divider" id="main-header"></header>
 
     <form id="add-class">
-        <div class="container">
-            <h1>Create Class</h1>
+      <div class="container">
+        <h1>Create Class</h1>
 
-            <label for="className"><b>Class Name</b></label>
-            <input type="text" placeholder="Enter Class Name" name="className" id="className" required>
+        <label for="className"><b>Class Name</b></label>
+        <input type="text" placeholder="Enter Class Name" name="className" id="className" required />
 
-            <select name="selectColor" id="selectColor">
-                <option value="red" id="red">Red</option>
-                <option value="orange" id="orange">Orange</option>
-                <option value="yellow" id="yellow">Yellow</option>
-                <option value="green" id="green">Green</option>
-                <option value="blue" id="blue">Blue</option>
-                <option value="purple" id="purple">Purple</option>
-            </select>
-    
-            <button type="button" id="submitNewClass" name="createClass" class="createclass-btn">Create Class</button>
-        </div>
+        <select name="selectColor" id="selectColor">
+          <option value="red" id="red">Red</option>
+          <option value="orange" id="orange">Orange</option>
+          <option value="yellow" id="yellow">Yellow</option>
+          <option value="green" id="green">Green</option>
+          <option value="blue" id="blue">Blue</option>
+          <option value="purple" id="purple">Purple</option>
+        </select>
+
+        <button type="button" id="submitNewClass" name="createClass" class="createclass-btn">Create Class</button>
+      </div>
     </form>
-
 
     <form id="add-class">
-        <div class="container">
-            <h1>Edit Class</h1>
+      <div class="container">
+        <h1>Edit Class</h1>
 
-            <label for="classes">Choose a class to Edit:</label>
+        <label for="classes">Choose a class to Edit:</label>
 
-            <select name="classes" id="classesDropDown">
-            </select>
+        <select name="classes" id="classesDropDown"></select>
 
-            <label for="classNameEdit"><b>New Class Name</b></label>
-            <input type="text" placeholder="Enter Class Name" name="classNameEdit" id="classNameEdit" required>
-    
-            <button type="button" id="editClass" name="createClass" class="createclass-btn">Edit Class</button>
-        </div>
+        <label for="classNameEdit"><b>New Class Name</b></label>
+        <input type="text" placeholder="Enter Class Name" name="classNameEdit" id="classNameEdit" required />
+
+        <button type="button" id="editClass" name="createClass" class="createclass-btn">Edit Class</button>
+      </div>
     </form>
-</body>
-<script  type="module" src="../js/add-edit-class.js"></script>
-
+  </body>
+  <script type="module" src="../js/add-edit-class.js"></script>
 </html>

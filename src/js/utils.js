@@ -1,9 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-import {
-  getAuth,
-  signOut,
-} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -45,7 +42,7 @@ export async function loadTemplate(path) {
 
 export async function loadHeader() {
   // Loads header into main.js
-  const headerHTML = await loadTemplate("/src/partials/header.html");
+  const headerHTML = await loadTemplate("../partials/header.html");
 
   const header = qs("#main-header");
 
@@ -67,7 +64,7 @@ export async function loadHeader() {
 
 export async function loadRegister() {
   // Loads header into main.js
-  const registerHTML = await loadTemplate("/src/partials/login.html");
+  const registerHTML = await loadTemplate("src/partials/login.html");
 
   const register = qs("#register-partial");
 
@@ -76,7 +73,7 @@ export async function loadRegister() {
 
 export async function loadLogin() {
   // Loads header into main.js
-  const loginHTML = await loadTemplate("/src/partials/login.html");
+  const loginHTML = await loadTemplate("src/partials/login.html");
 
   const login = qs("#register-partial");
 
