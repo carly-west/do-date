@@ -64,7 +64,7 @@ export async function loadHeader() {
 
 export async function loadRegister() {
   // Loads header into main.js
-  const registerHTML = await loadTemplate("src/partials/login.html");
+  const registerHTML = await loadTemplate("/src/partials/login.html");
 
   const register = qs("#register-partial");
 
@@ -73,7 +73,7 @@ export async function loadRegister() {
 
 export async function loadLogin() {
   // Loads header into main.js
-  const loginHTML = await loadTemplate("src/partials/login.html");
+  const loginHTML = await loadTemplate("/src/partials/login.html");
 
   const login = qs("#register-partial");
 
