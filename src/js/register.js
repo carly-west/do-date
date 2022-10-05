@@ -79,5 +79,6 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("logout-btn").style.display = "none";
     document.getElementById("displayName").style.display = "none";
     document.getElementById("assignmentTracker").style.display = "none";
+    document.getElementById("classEditor").style.display = "none";
   }
 });

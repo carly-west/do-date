@@ -21,6 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore(app);
 
 submitData.addEventListener("click", (e) => {
   var email = document.getElementById("email").value;
@@ -49,11 +50,10 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("logout-btn").style.display = "block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("register-btn").style.display = "none";
-
-    const db = getFirestore(app);
     const logName = async () => {
       const nameRef = doc(db, "users", user.email);
       const nameDoc = await getDoc(nameRef);
+
       document.getElementById("displayName").style.display = "block";
       document.getElementById("assignmentTracker").style.display = "block";
       document.getElementById("displayName").innerHTML = nameDoc.data().name;
@@ -65,5 +65,8 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("logout-btn").style.display = "none";
     document.getElementById("displayName").style.display = "none";
     document.getElementById("assignmentTracker").style.display = "none";
+    document.getElementById("classEditor").style.display = "none";
+    document.getElementById("login-btn").style.display = "block";
+    document.getElementById("register-btn").style.display = "block";
   }
 });

@@ -65,18 +65,29 @@ onAuthStateChanged(auth, (user) => {
       for (const [outerKey, value] of Object.entries(classObject)) {
         for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
           // assignmentValue is the assignment information
-          const dayOfWeekID = document.getElementById(assignmentValue.Date);
-          const dayListItem = document.createElement("li");
-          dayListItem.value = key;
-          dayListItem.innerHTML = assignmentValue.Name;
-          dayOfWeekID.appendChild(dayListItem);
-          dayListItem.setAttribute("class", "class-color-" + value.Color);
-          dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
 
-          const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
-          const dayListCheck = document.createElement("input");
-          dayOfWeekItem.appendChild(dayListCheck);
-          dayListCheck.setAttribute("type", "checkbox");
+          const dayOfWeekID = document.getElementById(assignmentValue.Date);
+
+          console.log("name", assignmentValue.Name);
+          console.log("date", assignmentValue.Date);
+          console.log("key", key);
+
+          const dayListItemDiv = document.createElement("div");
+          dayOfWeekID.appendChild(dayListItemDiv);
+          dayListItemDiv.setAttribute("id", key);
+
+          const addAssignmentInfo = document.getElementById(key);
+
+          const dayListItemInput = document.createElement("input");
+          addAssignmentInfo.appendChild(dayListItemInput);
+          dayListItemInput.setAttribute("type", "checkbox");
+          dayListItemInput.setAttribute("id", key, "name", key, "value", key);
+
+          const dayListItemLabel = document.createElement("label");
+          dayListItemLabel.innerHTML = assignmentValue.Name;
+          dayListItemLabel.value = key;
+          addAssignmentInfo.appendChild(dayListItemLabel);
+          dayListItemLabel.setAttribute("for", key);
         }
       }
 
