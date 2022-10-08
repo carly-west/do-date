@@ -6,7 +6,7 @@ loadHeader();
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-import { doc, setDoc, getDoc, getFirestore, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+import { doc, setDoc, getDoc, getFirestore, getDocs, updateDoc, deleteField } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -70,13 +70,16 @@ onAuthStateChanged(auth, (user) => {
           dayListItem.value = key;
           dayListItem.innerHTML = assignmentValue.Name;
           dayOfWeekID.appendChild(dayListItem);
-          dayListItem.setAttribute("class", "class-color-" + value.Color);
+          dayListItem.setAttribute("class", "class-color-" + value.Color + " assignments");
           dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
+          dayListItem.setAttribute("value", outerKey + "-" + assignmentValue.Name);
 
           const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
           const dayListCheck = document.createElement("input");
           dayOfWeekItem.appendChild(dayListCheck);
           dayListCheck.setAttribute("type", "checkbox");
+          dayListCheck.setAttribute("name", "assignments");
+          dayListCheck.setAttribute("value", outerKey + "-" + key);
         }
       }
 
@@ -113,6 +116,28 @@ onAuthStateChanged(auth, (user) => {
           // Update document without changing any other fields
           updateDoc(doc(db, "classes", user.email), {
             [`${[assignmentNameUpdated]}.Assignments.${[newAssignmentName]}`]: { Name: assignmentName, Date: dayToBeAdded },
+          });
+        });
+
+        /*
+          WHEN REMOVE ASSIGNMENTS BUTTON IS SELECTED
+        */
+
+        document.getElementById("removeAssignmentBtn").addEventListener("click", (e) => {
+          // console.log(document.getElementById("email").value);
+          var checkedAssignemnts = document.querySelectorAll('input[name="assignments"]:checked');
+          let checkedAssignmentsArray = [];
+
+          checkedAssignemnts.forEach((checkbox) => {
+            checkedAssignmentsArray.push(checkbox.value);
+            var checkboxValue = checkbox.value;
+            var classId = checkboxValue.substr(0, checkboxValue.indexOf("-"));
+            var assignmentId = checkboxValue.substring(checkboxValue.indexOf("-") + 1);
+
+            // Update document without changing any other fields
+            updateDoc(doc(db, "classes", user.email), {
+              [`${[classId]}.Assignments.${[assignmentId]}`]: deleteField(),
+            });
           });
         });
       };
