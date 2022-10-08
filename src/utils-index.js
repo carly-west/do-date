@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { doc, getDoc, getFirestore } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -42,7 +43,7 @@ export async function loadTemplate(path) {
 
 export async function loadHeader() {
   // Loads header into main.js
-  const headerHTML = await loadTemplate("../partials/header.html");
+  const headerHTML = await loadTemplate("partials/header.html");
 
   const header = qs("#main-header");
 
@@ -56,15 +57,21 @@ export async function loadHeader() {
     e.preventDefault();
     auth.signOut();
     console.log("User signed out!");
-    document.getElementsByClassName("doNotDisplayOnLoggedOut").style.display = "none";
+    document.getElementById("logout-btn").style.display = "none";
     document.getElementById("login-btn").style.display = "block";
     document.getElementById("register-btn").style.display = "block";
   });
 }
+const logoutBtn = document.querySelector("#logout-btn");
+logoutBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  auth.signOut();
+  console.log("User signed out!");
+});
 
 export async function loadRegister() {
   // Loads header into main.js
-  const registerHTML = await loadTemplate("../partials/login.html");
+  const registerHTML = await loadTemplate("partials/login.html");
 
   const register = qs("#register-partial");
 
@@ -73,9 +80,37 @@ export async function loadRegister() {
 
 export async function loadLogin() {
   // Loads header into main.js
-  const loginHTML = await loadTemplate("../partials/login.html");
+  const loginHTML = await loadTemplate("partials/login.html");
 
   const login = qs("#register-partial");
 
   await renderWithTemplate(loginHTML, register);
 }
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    console.log("logged in- on auth state change");
+    document.getElementById("logout-btn").style.display = "block";
+    document.getElementById("login-btn").style.display = "none";
+    document.getElementById("register-btn").style.display = "none";
+    const db = getFirestore(app);
+    const logName = async () => {
+      const nameRef = doc(db, "users", user.email);
+      const nameDoc = await getDoc(nameRef);
+      document.getElementById("displayName").style.display = "block";
+      document.getElementById("assignmentTracker").style.display = "block";
+      document.getElementById("displayName").innerHTML = nameDoc.data().name;
+    };
+    logName();
+  } else {
+    // User is signed out
+    console.log("not logged in- on auth state change");
+    document.getElementById("logout-btn").style.display = "none";
+    document.getElementById("displayName").style.display = "none";
+    document.getElementById("assignmentTracker").style.display = "none";
+  }
+});

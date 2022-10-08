@@ -1,0 +1,31 @@
+Name: Carly Correa
+Project Title: DoDate
+
+Team Members: Myself!
+
+Overall Status: On-schedule
+
+Number of hours worked since last update: 6
+Number of hours worked on the project thus far: 19
+Total number of hours anticipated for completion: 126
+
+Accomplishments:
+1. Added the functionality have the user choose the color they would like to use for the class.
+2. Display all classes in a legend with their chosen colors.
+3. Created the add assignment page and allowed users to add an assignment to a class.
+4. Displayed all assignments according to their day they are going to "do" them.
+5. Reorganized the way data is saved into Firestore so that each assignment is saved within a map of assignments.
+6. Added a GitHub pages link to website.
+
+Challenges:
+1. I realized I needed to reorganize the way I was structuring the data, and it took a lot of time to figure out how to add data using maps into Firestore.
+2. I decided to host my page on GitHub pages, and it isn't working out well.
+
+Plans / Goals for next week:
+I hope to figure out how to host on GitHub pages so that I can share my progress to the group I am having use the app with just a link. I also am going to add a way for the user to mark that they have completed an assignment.
+
+
+Accountability plan: (What is your plan to keep yourself honest and follow through with the goals that you have outlined?)
+I will continue to keep track of my hours worked, as well as be sure to work a bit extra to stay on track.
+
+Other comments:

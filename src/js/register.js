@@ -5,17 +5,8 @@ loadHeader();
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-import {
-  doc,
-  getDoc,
-  setDoc,
-  getFirestore,
-} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { doc, getDoc, setDoc, getFirestore } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -73,7 +64,6 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("logout-btn").style.display = "block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("register-btn").style.display = "none";
-
     const logName = async () => {
       const nameRef = doc(db, "users", user.email);
       const nameDoc = await getDoc(nameRef);
@@ -89,5 +79,6 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("logout-btn").style.display = "none";
     document.getElementById("displayName").style.display = "none";
     document.getElementById("assignmentTracker").style.display = "none";
+    document.getElementById("classEditor").style.display = "none";
   }
 });

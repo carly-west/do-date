@@ -4,75 +4,115 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DoDate</title>
-    <link rel="stylesheet" href="/src/css/main.css" />
+    <link rel="stylesheet" href="../css/main.css" />
   </head>
   <body>
     <header class="divider" id="main-header"></header>
-
-    <form id="add-assignment">
-      <div class="container">
-        <h1>Add Assignment</h1>
-
-        <label for="classes">Choose a class to add assignment to:</label>
-
-        <!-- Class Drop Down -->
-        <select name="classes" id="classesDropDown"></select>
-
-        <!-- Add Assignment -->
-        <label for="addAssignment"><b>Enter Assignment Name</b></label>
-        <input type="text" placeholder="Assignment Name" name="addAssignment" id="addAssignment" required />
-
-        <label for="addAssignment"><b>Assignment Due Date</b></label>
-        <select name="dayDropDown" id="dayDropDown">
-          <option value="Monday">Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-          <option value="Saturday">Saturday</option>
-          <option value="Sunday">Sunday</option>
-        </select>
-
-        <button type="button" id="addAssignmentButton" name="addAssignmentButton" class="addAssignment-btn">Add Assignment</button>
+    <div class="body">
+      <div class="displayType">
+        <label class="container"
+          >Do Date
+          <input type="radio" checked="checked" name="radio" id="organizeCheckboxDo" />
+          <span class="checkmark"></span>
+        </label>
+        <br />
+        <label class="container"
+          >Due Date
+          <input type="radio" name="radio" id="organizeCheckboxDue" />
+          <span class="checkmark"></span>
+        </label>
       </div>
-    </form>
+      <div class="container add-assignment-div">
+        <form id="add-assignment">
+          <h2 class="add-assignment-label">Add Assignment</h2>
+          <div class="float-left-right">
+            <div class="float-left">
+              <!-- Class Drop Down -->
+              <label for="classes" class="add-assignment-class-label">Class:</label>
+              <select name="classes" id="classesDropDown"></select>
+              <br />
 
-    <!-- Class legend -->
-    <div id="class-legend">
-      <h3>Class Legend</h3>
-      <ul id="classList"></ul>
-    </div>
+              <!-- Add Assignment -->
+              <div class="add-assignment-name">
+                <label for="addAssignment">Name:</label>
+                <input type="text" placeholder="Assignment" name="addAssignment" id="addAssignment" required />
+              </div>
+            </div>
 
-    <!-- Week layout -->
-    <div class="week-layout">
-      <div class="weekday" id="mondayDiv">
-        <h2 class="dayOfWeekTitle">Monday</h2>
-        <ul id="Monday"></ul>
+            <div class="day-drop-down">
+              <div class="float-right">
+                <!-- Weekday dropdown -->
+                <label for="addAssignment">Do Date:</label>
+                <select name="dayDropDown" id="dayDropDown">
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                  <option value="Sunday">Sunday</option>
+                </select>
+
+                <div class="due-date">
+                  <!-- Weekday dropdown -->
+                  <label for="addAssignmentDue" id="due-date-title">Due Date:</label>
+                  <select name="DueDayDropDown" id="DueDayDropDown">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" id="addAssignmentButton" name="addAssignmentButton" class="addAssignment-btn">Add Assignment</button>
+        </form>
       </div>
-      <div class="weekday" id="tuesdayDiv">
-        <h2 class="dayOfWeekTitle">Tuesday</h2>
-        <ul id="Tuesday"></ul>
+
+      <!-- Class legend -->
+      <div id="class-legend" class="class-legend">
+        <h3>Class Legend</h3>
+        <ul id="classList"></ul>
       </div>
-      <div class="weekday" id="wednesdayDiv">
-        <h2 class="dayOfWeekTitle">Wednesday</h2>
-        <ul id="Wednesday"></ul>
-      </div>
-      <div class="weekday" id="thursdayDiv">
-        <h2 class="dayOfWeekTitle">Thursday</h2>
-        <ul id="Thursday"></ul>
-      </div>
-      <div class="weekday" id="fridayDiv">
-        <h2 class="dayOfWeekTitle">Friday</h2>
-        <ul id="Friday"></ul>
-      </div>
-      <div class="weekday" id="saturdayDiv">
-        <h2 class="dayOfWeekTitle">Saturday</h2>
-        <ul id="Saturday"></ul>
-      </div>
-      <div class="weekday" id="sundayDiv">
-        <h2 class="dayOfWeekTitle">Sunday</h2>
-        <ul id="Sunday"></ul>
-      </div>
+
+      <!-- Week layout -->
+      <form>
+        <div class="week-layout">
+          <div class="weekday" id="mondayDiv">
+            <h2 class="dayOfWeekTitle">Monday</h2>
+            <ul id="Monday"></ul>
+          </div>
+          <div class="weekday" id="tuesdayDiv">
+            <h2 class="dayOfWeekTitle">Tuesday</h2>
+            <ul id="Tuesday"></ul>
+          </div>
+          <div class="weekday" id="wednesdayDiv">
+            <h2 class="dayOfWeekTitle">Wednesday</h2>
+            <ul id="Wednesday"></ul>
+          </div>
+          <div class="weekday" id="thursdayDiv">
+            <h2 class="dayOfWeekTitle">Thursday</h2>
+            <ul id="Thursday"></ul>
+          </div>
+          <div class="weekday" id="fridayDiv">
+            <h2 class="dayOfWeekTitle">Friday</h2>
+            <ul id="Friday"></ul>
+          </div>
+          <div class="weekday" id="saturdayDiv">
+            <h2 class="dayOfWeekTitle">Saturday</h2>
+            <ul id="Saturday"></ul>
+            <h2 class="dayOfWeekTitle" id="sunday-label">Sunday</h2>
+            <ul id="Sunday"></ul>
+          </div>
+          <!-- <div class="weekday" id="sundayDiv"></div> -->
+        </div>
+
+        <button type="button" id="removeAssignmentBtn" name="removeAssignmentButton" class="remove-assignment-btn">Remove Assignments</button>
+      </form>
     </div>
   </body>
   <script type="module" src="../js/assignment-tracker.js"></script>
