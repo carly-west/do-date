@@ -9,6 +9,13 @@
   <body>
     <header class="divider" id="main-header"></header>
     <div class="body">
+      <div class="displayTypeToggle">
+        <h2>Organize by Do Date:</h2>
+        <label class="switch">
+          <input type="checkbox" id="organizeCheckbox" checked />
+          <span class="slider round"></span>
+        </label>
+      </div>
       <div class="container add-assignment-div">
         <form id="add-assignment">
           <h2 class="add-assignment-label">Add Assignment</h2>
@@ -39,6 +46,20 @@
                   <option value="Saturday">Saturday</option>
                   <option value="Sunday">Sunday</option>
                 </select>
+
+                <div class="due-date">
+                  <!-- Weekday dropdown -->
+                  <label for="addAssignmentDue" id="due-date-title">Due Date:</label>
+                  <select name="DueDayDropDown" id="DueDayDropDown">
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                    <option value="Saturday">Saturday</option>
+                    <option value="Sunday">Sunday</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>

@@ -65,7 +65,7 @@ onAuthStateChanged(auth, (user) => {
       for (const [outerKey, value] of Object.entries(classObject)) {
         for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
           // assignmentValue is the assignment information
-          const dayOfWeekID = document.getElementById(assignmentValue.Date);
+          const dayOfWeekID = document.getElementById(assignmentValue.DoDate);
           const dayListItem = document.createElement("li");
           dayListItem.value = key;
           dayListItem.innerHTML = assignmentValue.Name;
@@ -89,21 +89,25 @@ onAuthStateChanged(auth, (user) => {
         const classObject = classDoc.data();
         var assignmentToBeAdded;
         var assignmentNameUpdated;
-        var dayToBeAdded;
+        var doDayToBeAdded;
+        var dueDayToBeAdded;
 
         /*
           ADDS ASSIGNMENT WHEN CREATE ASSIGNMENT BUTTON IS CLICKED
         */
-
         document.getElementById("addAssignmentButton").addEventListener("click", (e) => {
           // Sets the new class name to be added
           var assignmentName = document.getElementById("addAssignment").value;
           var classEdited = document.getElementById("classesDropDown");
           assignmentToBeAdded = classEdited.options[classEdited.selectedIndex].text;
 
-          // // Sets the day of the week of the assignment to be added
-          var dayEdited = document.getElementById("dayDropDown");
-          dayToBeAdded = dayEdited.options[dayEdited.selectedIndex].text;
+          // // Sets the DO day of the week of the assignment to be added
+          var doDayEdited = document.getElementById("dayDropDown");
+          doDayToBeAdded = doDayEdited.options[doDayEdited.selectedIndex].text;
+
+          // // Sets the DUE day of the week of the assignment to be added
+          var dueDayEdited = document.getElementById("DueDayDropDown");
+          dueDayToBeAdded = dueDayEdited.options[dueDayEdited.selectedIndex].text;
 
           // Finds the field associated with the value
           for (const [key, value] of Object.entries(classObject)) {
@@ -115,19 +119,19 @@ onAuthStateChanged(auth, (user) => {
 
           // Update document without changing any other fields
           updateDoc(doc(db, "classes", user.email), {
-            [`${[assignmentNameUpdated]}.Assignments.${[newAssignmentName]}`]: { Name: assignmentName, Date: dayToBeAdded },
+            [`${[assignmentNameUpdated]}.Assignments.${[newAssignmentName]}`]: { Name: assignmentName, DoDate: doDayToBeAdded, DueDate: dueDayToBeAdded },
           });
         });
 
         /*
           WHEN REMOVE ASSIGNMENTS BUTTON IS SELECTED
         */
-
         document.getElementById("removeAssignmentBtn").addEventListener("click", (e) => {
           // console.log(document.getElementById("email").value);
           var checkedAssignemnts = document.querySelectorAll('input[name="assignments"]:checked');
           let checkedAssignmentsArray = [];
 
+          // Adds all checked assignmenst to an array and deletes the ones that are checked
           checkedAssignemnts.forEach((checkbox) => {
             checkedAssignmentsArray.push(checkbox.value);
             var checkboxValue = checkbox.value;
@@ -139,6 +143,63 @@ onAuthStateChanged(auth, (user) => {
               [`${[classId]}.Assignments.${[assignmentId]}`]: deleteField(),
             });
           });
+        });
+
+        /*
+          WHEN "ORGANIZE BY DO DATE" IS CHECKED
+        */
+
+        document.getElementById("organizeCheckbox").addEventListener("click", (e) => {
+          const isChecked = document.querySelector("#organizeCheckbox").checked;
+
+          // Remove everything
+          var removeElements = document.querySelectorAll(".assignments");
+          removeElements.forEach((item) => {
+            item.remove();
+          });
+
+          if (isChecked) {
+            // Display classes in days of the week
+            for (const [outerKey, value] of Object.entries(classObject)) {
+              for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
+                const dayOfWeekID = document.getElementById(assignmentValue.DoDate);
+                const dayListItem = document.createElement("li");
+                dayListItem.value = key;
+                dayListItem.innerHTML = assignmentValue.Name;
+                dayOfWeekID.appendChild(dayListItem);
+                dayListItem.setAttribute("class", "class-color-" + value.Color + " assignments");
+                dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
+                dayListItem.setAttribute("value", outerKey + "-" + assignmentValue.Name);
+
+                const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
+                const dayListCheck = document.createElement("input");
+                dayOfWeekItem.appendChild(dayListCheck);
+                dayListCheck.setAttribute("type", "checkbox");
+                dayListCheck.setAttribute("name", "assignments");
+                dayListCheck.setAttribute("value", outerKey + "-" + key);
+              }
+            }
+          } else {
+            for (const [outerKey, value] of Object.entries(classObject)) {
+              for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
+                const dayOfWeekID = document.getElementById(assignmentValue.DueDate);
+                const dayListItem = document.createElement("li");
+                dayListItem.value = key;
+                dayListItem.innerHTML = assignmentValue.Name;
+                dayOfWeekID.appendChild(dayListItem);
+                dayListItem.setAttribute("class", "class-color-" + value.Color + " assignments");
+                dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
+                dayListItem.setAttribute("value", outerKey + "-" + assignmentValue.Name);
+
+                const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
+                const dayListCheck = document.createElement("input");
+                dayOfWeekItem.appendChild(dayListCheck);
+                dayListCheck.setAttribute("type", "checkbox");
+                dayListCheck.setAttribute("name", "assignments");
+                dayListCheck.setAttribute("value", outerKey + "-" + key);
+              }
+            }
+          }
         });
       };
       setClasses();
