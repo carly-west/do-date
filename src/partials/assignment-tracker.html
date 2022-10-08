@@ -9,11 +9,17 @@
   <body>
     <header class="divider" id="main-header"></header>
     <div class="body">
-      <div class="displayTypeToggle">
-        <h2>Organize by Do Date:</h2>
-        <label class="switch">
-          <input type="checkbox" id="organizeCheckbox" checked />
-          <span class="slider round"></span>
+      <div class="displayType">
+        <label class="container"
+          >Do Date
+          <input type="radio" checked="checked" name="radio" id="organizeCheckboxDo" />
+          <span class="checkmark"></span>
+        </label>
+        <br />
+        <label class="container"
+          >Due Date
+          <input type="radio" name="radio" id="organizeCheckboxDue" />
+          <span class="checkmark"></span>
         </label>
       </div>
       <div class="container add-assignment-div">

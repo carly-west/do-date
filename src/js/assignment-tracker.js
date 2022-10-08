@@ -149,58 +149,114 @@ onAuthStateChanged(auth, (user) => {
           WHEN "ORGANIZE BY DO DATE" IS CHECKED
         */
 
-        document.getElementById("organizeCheckbox").addEventListener("click", (e) => {
-          const isChecked = document.querySelector("#organizeCheckbox").checked;
-
-          // Remove everything
+        document.getElementById("organizeCheckboxDo").addEventListener("click", (e) => {
           var removeElements = document.querySelectorAll(".assignments");
           removeElements.forEach((item) => {
             item.remove();
           });
 
-          if (isChecked) {
-            // Display classes in days of the week
-            for (const [outerKey, value] of Object.entries(classObject)) {
-              for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
-                const dayOfWeekID = document.getElementById(assignmentValue.DoDate);
-                const dayListItem = document.createElement("li");
-                dayListItem.value = key;
-                dayListItem.innerHTML = assignmentValue.Name;
-                dayOfWeekID.appendChild(dayListItem);
-                dayListItem.setAttribute("class", "class-color-" + value.Color + " assignments");
-                dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
-                dayListItem.setAttribute("value", outerKey + "-" + assignmentValue.Name);
+          // Display classes in days of the week
+          for (const [outerKey, value] of Object.entries(classObject)) {
+            for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
+              const dayOfWeekID = document.getElementById(assignmentValue.DoDate);
+              const dayListItem = document.createElement("li");
+              dayListItem.value = key;
+              dayListItem.innerHTML = assignmentValue.Name;
+              dayOfWeekID.appendChild(dayListItem);
+              dayListItem.setAttribute("class", "class-color-" + value.Color + " assignments");
+              dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
+              dayListItem.setAttribute("value", outerKey + "-" + assignmentValue.Name);
 
-                const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
-                const dayListCheck = document.createElement("input");
-                dayOfWeekItem.appendChild(dayListCheck);
-                dayListCheck.setAttribute("type", "checkbox");
-                dayListCheck.setAttribute("name", "assignments");
-                dayListCheck.setAttribute("value", outerKey + "-" + key);
-              }
-            }
-          } else {
-            for (const [outerKey, value] of Object.entries(classObject)) {
-              for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
-                const dayOfWeekID = document.getElementById(assignmentValue.DueDate);
-                const dayListItem = document.createElement("li");
-                dayListItem.value = key;
-                dayListItem.innerHTML = assignmentValue.Name;
-                dayOfWeekID.appendChild(dayListItem);
-                dayListItem.setAttribute("class", "class-color-" + value.Color + " assignments");
-                dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
-                dayListItem.setAttribute("value", outerKey + "-" + assignmentValue.Name);
-
-                const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
-                const dayListCheck = document.createElement("input");
-                dayOfWeekItem.appendChild(dayListCheck);
-                dayListCheck.setAttribute("type", "checkbox");
-                dayListCheck.setAttribute("name", "assignments");
-                dayListCheck.setAttribute("value", outerKey + "-" + key);
-              }
+              const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
+              const dayListCheck = document.createElement("input");
+              dayOfWeekItem.appendChild(dayListCheck);
+              dayListCheck.setAttribute("type", "checkbox");
+              dayListCheck.setAttribute("name", "assignments");
+              dayListCheck.setAttribute("value", outerKey + "-" + key);
             }
           }
         });
+
+        document.getElementById("organizeCheckboxDue").addEventListener("click", (e) => {
+          var removeElements = document.querySelectorAll(".assignments");
+          removeElements.forEach((item) => {
+            item.remove();
+          });
+
+          // Display classes in days of the week
+          for (const [outerKey, value] of Object.entries(classObject)) {
+            for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
+              const dayOfWeekID = document.getElementById(assignmentValue.DueDate);
+              const dayListItem = document.createElement("li");
+              dayListItem.value = key;
+              dayListItem.innerHTML = assignmentValue.Name;
+              dayOfWeekID.appendChild(dayListItem);
+              dayListItem.setAttribute("class", "class-color-" + value.Color + " assignments");
+              dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
+              dayListItem.setAttribute("value", outerKey + "-" + assignmentValue.Name);
+
+              const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
+              const dayListCheck = document.createElement("input");
+              dayOfWeekItem.appendChild(dayListCheck);
+              dayListCheck.setAttribute("type", "checkbox");
+              dayListCheck.setAttribute("name", "assignments");
+              dayListCheck.setAttribute("value", outerKey + "-" + key);
+            }
+          }
+        });
+
+        // document.querySelectorAll(".organizeCheckbox").addEventListener("click", (e) => {
+        //   const isChecked = document.querySelectorAll(".organizeCheckbox").checked;
+        //   console.log(e);
+
+        // // Remove everything
+        // var removeElements = document.querySelectorAll(".assignments");
+        // removeElements.forEach((item) => {
+        //   item.remove();
+        // });
+
+        // if (isChecked) {
+        //   // Display classes in days of the week
+        //   for (const [outerKey, value] of Object.entries(classObject)) {
+        //     for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
+        //       const dayOfWeekID = document.getElementById(assignmentValue.DoDate);
+        //       const dayListItem = document.createElement("li");
+        //       dayListItem.value = key;
+        //       dayListItem.innerHTML = assignmentValue.Name;
+        //       dayOfWeekID.appendChild(dayListItem);
+        //       dayListItem.setAttribute("class", "class-color-" + value.Color + " assignments");
+        //       dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
+        //       dayListItem.setAttribute("value", outerKey + "-" + assignmentValue.Name);
+
+        //       const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
+        //       const dayListCheck = document.createElement("input");
+        //       dayOfWeekItem.appendChild(dayListCheck);
+        //       dayListCheck.setAttribute("type", "checkbox");
+        //       dayListCheck.setAttribute("name", "assignments");
+        //       dayListCheck.setAttribute("value", outerKey + "-" + key);
+        //     }
+        //   }
+        // } else {
+        //   for (const [outerKey, value] of Object.entries(classObject)) {
+        //     for (const [key, assignmentValue] of Object.entries(value.Assignments)) {
+        //       const dayOfWeekID = document.getElementById(assignmentValue.DueDate);
+        //       const dayListItem = document.createElement("li");
+        //       dayListItem.value = key;
+        //       dayListItem.innerHTML = assignmentValue.Name;
+        //       dayOfWeekID.appendChild(dayListItem);
+        //       dayListItem.setAttribute("class", "class-color-" + value.Color + " assignments");
+        //       dayListItem.setAttribute("id", outerKey + "-" + assignmentValue.Name);
+        //       dayListItem.setAttribute("value", outerKey + "-" + assignmentValue.Name);
+
+        //       const dayOfWeekItem = document.getElementById(outerKey + "-" + assignmentValue.Name);
+        //       const dayListCheck = document.createElement("input");
+        //       dayOfWeekItem.appendChild(dayListCheck);
+        //       dayListCheck.setAttribute("type", "checkbox");
+        //       dayListCheck.setAttribute("name", "assignments");
+        //       dayListCheck.setAttribute("value", outerKey + "-" + key);
+        //     }
+        //   }
+        // }
       };
       setClasses();
     };
