@@ -134,7 +134,7 @@ button:not(:disabled):active {
 }
 
 /* Hide the browser's default radio button */
-.container input {
+.displayType input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -183,14 +183,6 @@ button:not(:disabled):active {
   background: white;
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
 /* Header */
 
 header {
@@ -267,7 +259,7 @@ Assignment Tracker
 /* Add assignment div */
 .add-assignment-div {
   border: 1px solid black;
-  height: 17rem;
+  height: 18.8rem;
   float: right;
   padding: 10px 40px;
   max-width: 350px;
@@ -309,7 +301,7 @@ Assignment Tracker
   float: right;
   padding: 10px 30px;
   margin-right: 30px;
-  height: 17rem;
+  height: 18.8rem;
   background-color: var(--lightgraycolor);
   border-radius: 0.375rem;
   border: 3px solid #ccc;
@@ -343,10 +335,6 @@ ul {
   margin-top: 20px;
 }
 
-.week-layout ul {
-  margin: 10px 0px 0px 10px;
-}
-
 .week-layout li {
   margin: 20px 10px;
   padding: 10px;
@@ -376,4 +364,8 @@ ul {
 .displayType {
   margin-left: 30px;
   float: left;
+}
+
+.remove-assignment-btn {
+  margin-top: 30px;
 }
