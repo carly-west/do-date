@@ -9,19 +9,22 @@
   </head>
   <body>
     <header class="divider" id="main-header"></header>
+    <div class="class-editor-body">
+      <div class="class-editor-content">
+        <form id="login-partial">
+          <div class="container">
+            <h1>Login</h1>
 
-    <form id="login-partial">
-      <div class="container">
-        <h1>Login</h1>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" id="email" required />
 
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" id="email" required />
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Password" name="psw" id="psw" required />
 
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Password" name="psw" id="psw" required />
-
-        <button type="button" id="submitData" name="submitData" class="loginbtn">Login</button>
+            <button type="button" id="submitData" name="submitData" class="loginbtn">Login</button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </body>
 </html>
