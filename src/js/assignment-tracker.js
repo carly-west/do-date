@@ -21,13 +21,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const user = auth.currentUser;
 const db = getFirestore(app);
 
 onAuthStateChanged(auth, (user) => {
   addHeaderData(user);
   if (user) {
-    //   Set name in header
     const logName = async () => {
       // Loop through all of the classes linked with the user
       const classRef = doc(db, "classes", user.email);

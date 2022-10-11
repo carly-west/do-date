@@ -27,12 +27,8 @@ const db = getFirestore(app);
 // Populate dropdown
 
 onAuthStateChanged(auth, (user) => {
+  addHeaderData(user);
   if (user) {
-    console.log("logged in- on auth state change");
-    document.getElementById("logout-btn").style.display = "block";
-    document.getElementById("login-btn").style.display = "none";
-    document.getElementById("register-btn").style.display = "none";
-
     //   Set class dropdown
     const setClasses = async () => {
       const classRef = doc(db, "classes", user.email);

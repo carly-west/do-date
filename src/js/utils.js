@@ -67,6 +67,7 @@ export async function loadHeader() {
     document.getElementById("register-btn").style.display = "block";
 
     location.href = "../index.html";
+    addHeaderData(user);
   });
 }
 
@@ -102,11 +103,20 @@ export async function addHeaderData(user) {
       document.getElementById("displayName").style.display = "block";
       document.getElementById("displayName").innerHTML = nameDoc.data().name;
     };
+
+    var removeDisplaydocument = document.getElementsByClassName("doNotDisplayOnLoggedOut");
+
+    for (var i = 0; i < removeDisplaydocument.length; i += 1) {
+      removeDisplaydocument[i].style.display = "block";
+    }
     logName();
   } else {
     // User is signed out
     console.log("not logged in- on auth state change");
-    document.getElementById("logout-btn").style.display = "none";
-    document.getElementById("displayName").style.display = "none";
+    var removeDisplaydocument = document.getElementsByClassName("doNotDisplayOnLoggedOut");
+
+    for (var i = 0; i < removeDisplaydocument.length; i += 1) {
+      removeDisplaydocument[i].style.display = "none";
+    }
   }
 }

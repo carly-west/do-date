@@ -91,26 +91,27 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 onAuthStateChanged(auth, (user) => {
+  console.log("hi");
+  const db = getFirestore();
   if (user) {
-    const uid = user.uid;
     console.log("logged in- on auth state change");
     document.getElementById("logout-btn").style.display = "block";
     document.getElementById("login-btn").style.display = "none";
     document.getElementById("register-btn").style.display = "none";
-    const db = getFirestore(app);
     const logName = async () => {
       const nameRef = doc(db, "users", user.email);
       const nameDoc = await getDoc(nameRef);
       document.getElementById("displayName").style.display = "block";
-      document.getElementById("assignmentTracker").style.display = "block";
       document.getElementById("displayName").innerHTML = nameDoc.data().name;
     };
     logName();
   } else {
     // User is signed out
     console.log("not logged in- on auth state change");
-    document.getElementById("logout-btn").style.display = "none";
-    document.getElementById("displayName").style.display = "none";
-    document.getElementById("assignmentTracker").style.display = "none";
+    var removeDisplaydocument = document.getElementsByClassName("doNotDisplayOnLoggedOut");
+
+    for (var i = 0; i < removeDisplaydocument.length; i += 1) {
+      removeDisplaydocument[i].style.display = "none";
+    }
   }
 });
