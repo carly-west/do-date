@@ -294,10 +294,6 @@ Assignment Tracker
   margin-bottom: 20px;
 }
 
-.add-assignment-name {
-  margin-top: 10px;
-}
-
 /* Class Legend */
 .class-legend {
   border: 1px solid black;
@@ -360,7 +356,8 @@ ul {
   padding-top: 30%;
 }
 
-.due-date {
+.due-date,
+.add-assignment-name {
   padding-top: 20px;
 }
 

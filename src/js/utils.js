@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { doc, setDoc, getDoc, getFirestore, getDocs, updateDoc, deleteField } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -52,13 +53,20 @@ export async function loadHeader() {
   const auth = getAuth();
 
   const logoutBtn = document.querySelector("#logout-btn");
+
   logoutBtn.addEventListener("click", (e) => {
     e.preventDefault();
     auth.signOut();
     console.log("User signed out!");
-    document.getElementsByClassName("doNotDisplayOnLoggedOut").style.display = "none";
+    var removeDisplaydocument = document.getElementsByClassName("doNotDisplayOnLoggedOut");
+
+    for (var i = 0; i < removeDisplaydocument.length; i += 1) {
+      removeDisplaydocument[i].style.display = "none";
+    }
     document.getElementById("login-btn").style.display = "block";
     document.getElementById("register-btn").style.display = "block";
+
+    location.href = "../index.html";
   });
 }
 
@@ -78,4 +86,27 @@ export async function loadLogin() {
   const login = qs("#register-partial");
 
   await renderWithTemplate(loginHTML, register);
+}
+
+export async function addHeaderData(user) {
+  console.log("hi");
+  const db = getFirestore();
+  if (user) {
+    console.log("logged in- on auth state change");
+    document.getElementById("logout-btn").style.display = "block";
+    document.getElementById("login-btn").style.display = "none";
+    document.getElementById("register-btn").style.display = "none";
+    const logName = async () => {
+      const nameRef = doc(db, "users", user.email);
+      const nameDoc = await getDoc(nameRef);
+      document.getElementById("displayName").style.display = "block";
+      document.getElementById("displayName").innerHTML = nameDoc.data().name;
+    };
+    logName();
+  } else {
+    // User is signed out
+    console.log("not logged in- on auth state change");
+    document.getElementById("logout-btn").style.display = "none";
+    document.getElementById("displayName").style.display = "none";
+  }
 }

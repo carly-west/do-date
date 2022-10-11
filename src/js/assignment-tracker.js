@@ -1,4 +1,4 @@
-import { loadHeader } from "../js/utils.js";
+import { loadHeader, addHeaderData } from "../js/utils.js";
 
 // Loads header
 loadHeader();
@@ -25,18 +25,10 @@ const user = auth.currentUser;
 const db = getFirestore(app);
 
 onAuthStateChanged(auth, (user) => {
+  addHeaderData(user);
   if (user) {
-    console.log("logged in- on auth state change");
-    document.getElementById("logout-btn").style.display = "block";
-    document.getElementById("login-btn").style.display = "none";
-    document.getElementById("register-btn").style.display = "none";
     //   Set name in header
     const logName = async () => {
-      const nameRef = doc(db, "users", user.email);
-      const nameDoc = await getDoc(nameRef);
-      document.getElementById("displayName").style.display = "block";
-      document.getElementById("displayName").innerHTML = nameDoc.data().name;
-
       // Loop through all of the classes linked with the user
       const classRef = doc(db, "classes", user.email);
       const classDoc = await getDoc(classRef);
@@ -209,9 +201,6 @@ onAuthStateChanged(auth, (user) => {
     };
     logName();
   } else {
-    // User is signed out
-    console.log("not logged in- on auth state change");
-    document.getElementById("logout-btn").style.display = "none";
-    document.getElementById("displayName").style.display = "none";
+    location.href = "../index.html";
   }
 });

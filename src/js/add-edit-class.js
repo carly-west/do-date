@@ -1,4 +1,4 @@
-import { loadHeader } from "./utils.js";
+import { loadHeader, addHeaderData } from "./utils.js";
 
 // Loads header
 loadHeader();
