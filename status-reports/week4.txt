@@ -1,0 +1,27 @@
+Name: Carly Correa
+Project Title: DoDate
+
+Team Members: Myself!
+
+Overall Status: On-schedule
+
+Number of hours worked since last update: 6
+Number of hours worked on the project thus far: 25
+Total number of hours anticipated for completion: 126
+
+Accomplishments:
+1. Organized assignments by their due and do dates
+2. Added some styling to each page.
+3. Added a "Due Date" field for the user to input and add to Firestore database.
+4. Added a "remove assignment" button that allows users to remove all of the assigments they have checked off
+5. Updated the organization of the "do" and "due" dates based on what the user has selected.
+
+Challenges:
+I haven't ran into many challenges this week! It was a bit more difficult than I anticipated to add another field to each assignment. Github pages also isn't working the way I expected it to.
+
+Plans / Goals for next week:
+I hope to fully figure out the hosting of my project, because of Github pages is registering the incorrect page as the main page. I also am hoping to add some security to the website to only allow users the ability to enter certain pages if they are logged in.
+
+
+Accountability plan: (What is your plan to keep yourself honest and follow through with the goals that you have outlined?)
+I will continue to keep track of my hours worked, as well as be sure to work a bit extra to stay on track.
